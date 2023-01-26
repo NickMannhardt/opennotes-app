@@ -1,3 +1,0 @@
-[submodule "src/transformers-js"]
-	path = src/transformers-js
-	url = git@github.com:praeclarum/transformers-js.git
