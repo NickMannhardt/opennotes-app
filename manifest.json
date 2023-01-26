@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Clinical Notes AI",
     "description": "Simplifying your clinical notes.",
-    "version": "3.0",
+    "version": "0.1",
 
     "icons": {
         "16": "/images/icon-16.png",
@@ -11,26 +11,41 @@
         "128": "/images/icon-128.png"
     },
 
+    "background": {
+        "service_worker": "service_worker.js"
+    },
+
     "content_scripts": [
         {
             "matches": ["<all_urls>"],
-            "js": ["Content.js"]
+            "js": ["/content_dist/bundle.js"]
         }
     ],
 
-
-    "action": {
-        "default_popup": "./popup.html"
+    "sandbox": {
+        "pages": [ "sandbox.html" ]
     },
 
-    "background": {
-        "service_worker": "rightclicktext.js"
+    "web_accessible_resources": [
+        {
+            "resources": [ 
+                "src/models/*.json",
+                "src/models/*.onnx",
+                "dist/*.wasm"
+            ],
+            "matches": [
+                "http://*/*",
+                "https://*/*"
+            ]
+        }
+    ],
 
-    },
+    "minimum_chrome_version": "92",
 
     "permissions": [
         "storage",
         "contextMenus",
-        "tabs"
+        "tabs",
+        "offscreen"
     ]
 }
