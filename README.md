@@ -2,6 +2,7 @@
 Chrome extension for simplifying patient clinical notes
 
 ## Setup
+Install the necessary packages by running
 ```
 npm install
 ```
@@ -9,14 +10,20 @@ npm install
 
 ## Testing
 
+Start by running 
+```
+npm start
+```
+to start the development server.
+
 ES6 Modules are not well supported in chrome-extensions so we use webpack to compile our code into a single javascript file that we can run on the browser. 
 
-Run the following code snippet to compile.
-```
-npm run webpack
-```
+We also use React to simplify web development which requires additional compiling.
 
-**Note:** This compiles both the content and sandbox scripts. You can compile them individually using `npx webpack --env config="content"` and `npx webpack --env config="sandbox"` respectively.
+Both compliations can be run with
+```
+npm run build
+```
 
 Now we can upload the extension to our local browser instance by going to [chrome://extensions](chrome://extensions).
 
@@ -27,6 +34,8 @@ The chrome extension will automatically start running.
 
 To check logs for service-workers (background scripts), click on "inspect views" on the card for the opennotes app.
 Logs from the offscreen page and sandbox are sent here for increased visibility.
+
+To reload the extension after making changes click the circular arrow button in the bottom right corner of the extension's card in [chrome://extensions](chrome://extensions) (remember to recompile first).
 
 ## Architecture
 The chrome extension consists of three pieces:
