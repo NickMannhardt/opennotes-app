@@ -61,7 +61,7 @@ sandbox_exports = {
     },
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'sandbox_dist'),
+        path: path.resolve(__dirname, 'build/sandbox_dist'),
         library: {
             type: 'umd'
         }

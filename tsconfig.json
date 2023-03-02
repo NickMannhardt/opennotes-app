@@ -1,20 +1,26 @@
 {
-    "compilerOptions": {
-        "noImplicitAny": true,
-        "target": "ES5",
-        "module": "commonjs",
-        "moduleResolution": "Node",
-        "allowJs": true
-    },
-    "types": [
-        "chrome"
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
     ],
-    "exclude": [
-        "content_dist/**/*",
-        "sandbox_dist/**/*",
-        "sandbox_src/**/*",
-        "offscreen.js",
-        "service_worker.js",
-        "webpack.config.js",
-    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx"
+  },
+  "include": [
+    "src"
+  ]
 }
