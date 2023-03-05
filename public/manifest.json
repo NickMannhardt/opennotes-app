@@ -11,10 +11,7 @@
         "128": "/images/icon-128.png"
     },
 
-    "action": {
-        "default_title": "OpenNotes Helper",
-        "default_popup": "index.html"
-    },
+    "action": {},
 
     "background": {
         "service_worker": "service_worker.js"
