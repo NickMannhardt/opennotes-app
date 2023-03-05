@@ -7,11 +7,16 @@ async function main() {
 
 async function loadModelInSandbox() {
     console.log('creating offscreen document');
-    await chrome.offscreen.createDocument({
-        url: chrome.runtime.getURL('offscreen.html'),
-        reasons: [chrome.offscreen.Reason.IFRAME_SCRIPTING],
-        justification: 'Run ONNX Runtime using WASM'
-    });
+    // TODO: do this the proper way
+    try {
+        await chrome.offscreen.createDocument({
+            url: chrome.runtime.getURL('offscreen.html'),
+            reasons: [chrome.offscreen.Reason.IFRAME_SCRIPTING],
+            justification: 'Run ONNX Runtime using WASM'
+        });
+    } catch(err) {
+        console.log('offscreen document already exists.')
+    }
 }
 
 async function sendMessageToModel(input) {
@@ -23,6 +28,17 @@ async function sendMessageToModel(input) {
     });
     console.log(`got response: ${response}`)
 }
+
+chrome.action.onClicked.addListener((tab) => {
+    chrome.tabs.query({active: true, currentWindow: true},
+        (tabs) => {
+            var activeTab = tabs[0];
+            chrome.tabs.sendMessage(
+                activeTab.id,
+                {"message": "clicked_browser_action"}
+            );
+    });
+})
 
 chrome.runtime.onMessage.addListener((message) => {
     if (message.log) {
