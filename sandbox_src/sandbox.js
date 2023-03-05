@@ -31,5 +31,10 @@ window.addEventListener('message', async function (event) {
     const input = event.data.body;
     const out = await t5_model.translate(input);
 
-    log(out);
+    window.parent.postMessage({
+        request_origin: event.data.request_origin,
+        body: out
+    }, "*")
+
+    // log(out);
 });

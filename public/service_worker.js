@@ -15,12 +15,13 @@ async function loadModelInSandbox() {
 }
 
 async function sendMessageToModel(input) {
-    chrome.runtime.sendMessage({
+    const response = await chrome.runtime.sendMessage({
         command: 'translate',
         sender: 'service-worker',
         target: 'sandbox',
         body: input
     });
+    console.log(`got response: ${response}`)
 }
 
 chrome.runtime.onMessage.addListener((message) => {

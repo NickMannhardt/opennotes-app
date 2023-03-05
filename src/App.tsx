@@ -1,6 +1,8 @@
 import React from 'react';
+// import ReactDOM from 'react-dom';
 import logo from './logo.svg';
 import './App.css';
+// import { Main } from './content';
 
 function App() {
   return (
@@ -22,5 +24,10 @@ function App() {
     </div>
   );
 }
+// const app = document.createElement('div');
+// app.id = "opennotes-app-root";
+
+// document.body.appendChild(app);
+// ReactDOM.render(<Main />, app);
 
 export default App;

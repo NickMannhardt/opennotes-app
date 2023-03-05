@@ -3,5 +3,18 @@
 }
 
 .my-extension h1 {
-    color: #000;
+    color: #2ab031;
+    display: flex;
+    font-size: xx-large;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.UserInput {
+    display: flex;
+    flex-direction: column;
+}
+
+.OutputContainer{
+    justify-content: center;
 }
