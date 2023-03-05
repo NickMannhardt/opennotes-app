@@ -1,4 +1,3 @@
-
 function log(body) {
     chrome.runtime.sendMessage({
         log: true,
@@ -7,43 +6,38 @@ function log(body) {
     });
 }
 
-function message(target, command, body) {
-    chrome.runtime.sendMessage({
-        sender: "offscreen",
-        target: target,
-        command: command,
-        body: body
+log("hello world from offscreen");
+
+function getResponseFromSandbox() {
+    /**
+     * This function returns a promise that is only resolved once
+     * the message listener has been received a message from the
+     * sandbox.
+     */
+    return new Promise((resolve) => {
+        const listener = (event) => {
+            window.removeEventListener("message", listener);
+            resolve(event.data);
+        }
+        window.addEventListener("message", listener)
     })
 }
 
-log("hello world from offscreen");
-
-// Receive messages from sandbox.
-window.addEventListener('message', (event) => {
-    if (event.data.log) {
-        chrome.runtime.sendMessage({
-            log: true,
-            sender: event.data.sender,
-            body: event.data.body,
-        });
-        return;
-    }
-    log(`received message from sandbox: ${JSON.stringify(event.data)}`);
-});
-
-// Receive messages from other chrome-exentsion components.
-chrome.runtime.onMessage.addListener((message) => {
-    log(`received message from ${message.sender}: ${JSON.stringify(message)}`);
+// Receive messages from other chrome-extension components.
+chrome.runtime.onMessage.addListener((message, sender, SendResponse) => {
     const iframe = document.getElementById("sandbox");
-
-    switch(message.command) {
-        case "translate":
-            iframe.contentWindow.postMessage(
-                {
-                    command: "translate",
-                    body: message.body
-                },
-                '*'
-            );
-    }
+    
+    iframe.contentWindow.postMessage(
+        {
+            request_origin: sender.id,
+            body: message.body
+        },
+        '*'
+    );
+    getResponseFromSandbox().then((response) => {
+        SendResponse({
+            'body': response.body
+        })
+    })
+    return true;
 })

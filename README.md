@@ -7,14 +7,16 @@ Install the necessary packages by running
 npm install
 ```
 
-
-## Testing
+## Development
 
 Start by running 
 ```
 npm start
 ```
-to start the development server.
+to start the development server (this may take a while). Now changes made to the react components will be rendered live at [localhost:3000](localhost:3000).
+This page shows the extension popup looks like running on top of a default website placeholder.
+
+## Deploy for testing
 
 ES6 Modules are not well supported in chrome-extensions so we use webpack to compile our code into a single javascript file that we can run on the browser. 
 
@@ -42,3 +44,6 @@ The chrome extension consists of three pieces:
 * **Content Script:** This handles the interactions between the chrome extension and the active page. This is how we can read and change the content on a user's patient portal.
 * **Service-Worker:** The service-worker creates the offscreen page and handles communication between the content script and the Offscreen page.
 * **Offscreen Page:** This is where the machine learning models live. The offscreen page has a sandbox subcomponent. The sandbox has special permissions to execute Web Assembly files (which `onnxruntime-web` requires). 
+
+## Getting Help
+*For questions contact Niklas Mannhardt at niklasm@mit.edu or niklas.mannhardt@gmail.com*
