@@ -95,11 +95,14 @@ app.id = "opennotes-app-root";
 
 app.style.display = 'none';
 
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.message === 'clicked_browser_action') {
-        toggle();
-    }
-});
+console.log(`chrome runtime: ${chrome.runtime}`)
+if (chrome.runtime !== undefined) {
+    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+        if (request.message === 'clicked_browser_action') {
+            toggle();
+        }
+    });
+}
 
 function toggle() {
     if (app.style.display === 'none') {
