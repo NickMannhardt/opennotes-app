@@ -1,8 +1,8 @@
 import React from 'react';
-// import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom';
 import logo from './logo.svg';
 import './App.css';
-// import { Main } from './content';
+import { Main } from './content';
 
 function App() {
   return (
@@ -24,10 +24,11 @@ function App() {
     </div>
   );
 }
-// const app = document.createElement('div');
-// app.id = "opennotes-app-root";
 
-// document.body.appendChild(app);
-// ReactDOM.render(<Main />, app);
+const app_render = document.createElement('div');
+app_render.id = "opennotes-app-dev-root";
+
+document.body.appendChild(app_render);
+ReactDOM.render(<Main />, app_render);
 
 export default App;
