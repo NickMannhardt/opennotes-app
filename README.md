@@ -2,6 +2,8 @@
 Chrome extension for simplifying patient clinical notes
 
 ## Setup
+**pre-reqs:** Install `npm` and `node` from [this site](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) if it is not already installed on your machine.
+
 Install the necessary packages by running
 ```
 npm install
